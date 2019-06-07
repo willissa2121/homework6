@@ -40,6 +40,9 @@ let gifCreator = () => {
   }
   else {
     $("#main-button").text("Already Been Searched!")
+    setTimeout(function(){
+      $("#main-button").text("Send Request")
+    }, 1500)
     let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit=10&offset=0&rating=G&lang=en"
     $.ajax({
       url: currentURL,
