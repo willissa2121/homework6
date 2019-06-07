@@ -1,7 +1,7 @@
 
 //declaring the URL, the tracker array globally
 
-let myURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=Lebron&limit=10&offset=0&rating=G&lang=en"
+let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=Lebron&limit=10&offset=0&rating=G&lang=en"
 let trackArray = []
 
 // called when submit request button is pressed
@@ -27,7 +27,7 @@ let gifCreator = () => {
     $("#button-row").append(newButton)
 
     let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit=10&offset=0&rating=G&lang=en"
-    
+
     // Ajax query that creates gif and rating and appends it to the container
     $.ajax({
       url: currentURL,
@@ -40,11 +40,12 @@ let gifCreator = () => {
         holderDiv.attr("class", "image-appender")
         let imgSrc = $("<img/>")
         imgSrc.attr("src", response.data[i].images.original.url)
+        imgSrc.attr("data-count", "0")
         imgSrc.attr("onClick", "gifClick()")
         let rating = response.data[i].rating
         imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
         $("#append-gifs").append(holderDiv)
-        holderDiv.css({"display": "flex", "flex-direction": "column", "align-items": "center"})
+        holderDiv.css({ "display": "flex", "flex-direction": "column", "align-items": "center" })
         holderDiv.append(imgSrc)
         holderDiv.append(`This gif is rated ${rating}`)
       }
@@ -54,7 +55,7 @@ let gifCreator = () => {
   //Condition that will run if request has already been made. Will change button to say "request has been made", but will still populate field with previously searched gifs.
   else {
     $("#main-button").text("This Item Has Already Been Searched!")
-    setTimeout(function(){
+    setTimeout(function () {
       $("#main-button").text("Send Request")
     }, 1500)
     let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit=10&offset=0&rating=G&lang=en"
@@ -68,11 +69,12 @@ let gifCreator = () => {
         holderDiv.attr("class", "image-appender")
         let imgSrc = $("<img/>")
         imgSrc.attr("src", response.data[i].images.original.url)
+        imgSrc.attr("data-count", "0")
         imgSrc.attr("onClick", "gifClick()")
         let rating = response.data[i].rating
         imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
         $("#append-gifs").append(holderDiv)
-        holderDiv.css({"display": "flex", "flex-direction": "column", "align-items": "center"})
+        holderDiv.css({ "display": "flex", "flex-direction": "column", "align-items": "center" })
         holderDiv.append(imgSrc)
         holderDiv.append(`This gif is rated ${rating}`)
       }
@@ -103,22 +105,38 @@ function buttonFunction(event) {
     for (var i = 0; i < 10; i++) {
 
       let holderDiv = $("<div>")
-        holderDiv.attr("class", "image-appender")
-        let imgSrc = $("<img/>")
-        imgSrc.attr("src", response.data[i].images.fixed_height_still.url)
-        imgSrc.attr("onClick", "gifClick()")
-        let rating = response.data[i].rating
-        imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
-        $("#append-gifs").append(holderDiv)
-        holderDiv.css({"display": "flex", "flex-direction": "column", "align-items": "center"})
-        holderDiv.append(imgSrc)
-        holderDiv.append(`This gif is rated ${rating}`)
+      holderDiv.attr("class", "image-appender")
+      let imgSrc = $("<img/>")
+      imgSrc.attr("src", response.data[i].images.fixed_height_still.url)
+      imgSrc.attr("data-count", "0")
+      imgSrc.attr("onClick", "gifClick()")
+      let rating = response.data[i].rating
+      imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
+      $("#append-gifs").append(holderDiv)
+      holderDiv.css({ "display": "flex", "flex-direction": "column", "align-items": "center" })
+      holderDiv.append(imgSrc)
+      holderDiv.append(`This gif is rated ${rating}`)
     }
   })
 }
 
+// function that will be used to take either play or pause gif depending on data-count attribute value (either zero or one)
+
 function gifClick(event) {
-  console.log(this.event.target)
-  this.event.target.setAttribute("src", "https://unsplash.com/photos/J1IbThTQJoY")
+  console.log(this.event.target.dataset.count);
+
+
+  let currentURl = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.id + "&limit=10&offset=0&rating=G&lang=en";
+
+
+  // if (this.event.target.data("count") === 0) {
+  //   $.ajax({
+  //     url: currentURL,
+  //     method: "GET"
+
+  //   }).then(function () {
+  //     this.event.target.setAttribute("data-count", '1')
+  //   })
+  // }
 }
 
