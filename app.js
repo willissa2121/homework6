@@ -22,7 +22,7 @@ let gifCreator = () => {
     let newButton = $("<button>");
     newButton.text(gifNeed)
     newButton.attr("class", "btn btn-primary ml-2 mt-1 mr-2 mb-1")
-    newButton.attr("id", gifNeed)
+    newButton.attr("class", gifNeed)
     newButton.attr("onClick", "buttonFunction()")
     $("#button-row").append(newButton)
 
@@ -39,8 +39,12 @@ let gifCreator = () => {
         let holderDiv = $("<div>")
         holderDiv.attr("class", "image-appender")
         let imgSrc = $("<img/>")
-        imgSrc.attr("src", response.data[i].images.original.url)
+        imgSrc.attr("src", response.data[i].images.fixed_height_still.url)
         imgSrc.attr("data-count", "0")
+        imgSrc.attr("data-order", i)
+        imgSrc.attr("class", gifNeed)
+
+
         imgSrc.attr("onClick", "gifClick()")
         let rating = response.data[i].rating
         imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
@@ -68,8 +72,10 @@ let gifCreator = () => {
         let holderDiv = $("<div>")
         holderDiv.attr("class", "image-appender")
         let imgSrc = $("<img/>")
-        imgSrc.attr("src", response.data[i].images.original.url)
+        imgSrc.attr("src", response.data[i].images.fixed_height_still.url)
         imgSrc.attr("data-count", "0")
+        imgSrc.attr("data-order", i)
+        imgSrc.attr("class", gifNeed)
         imgSrc.attr("onClick", "gifClick()")
         let rating = response.data[i].rating
         imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
@@ -86,15 +92,16 @@ let gifCreator = () => {
 console.log($("#gif-request").value)
 
 
-//functiont that is called via onlcik of any button (they are all generated dynamically to have the same class name). Process of gif generation is idencitcal to previous process, just skips over the check of input, since no input is given.
+//function that is called via onclick of any button (they are all generated dynamically to have the same class name). Process of gif generation is idencitcal to previous process, just skips over the check of input, since no input is given.
 function buttonFunction(event) {
   $("#append-gifs").empty();
 
-  let word;
-  // console.log(this.event.target)
-  console.log(this.event.target.id)
 
-  let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.id + "&limit=10&offset=0&rating=G&lang=en"
+  // console.log(this.event.target)
+  console.log(this.event.target.className)
+  let word = this.event.target.className;
+
+  let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.className + "&limit=10&offset=0&rating=G&lang=en"
 
 
   $.ajax({
@@ -107,9 +114,16 @@ function buttonFunction(event) {
       let holderDiv = $("<div>")
       holderDiv.attr("class", "image-appender")
       let imgSrc = $("<img/>")
+
+      imgSrc.attr("class", word)
       imgSrc.attr("src", response.data[i].images.fixed_height_still.url)
+
+      // imgSrc.attr("class", response.data[i].images.fixed_height_still.url)
       imgSrc.attr("data-count", "0")
+
+      imgSrc.attr("data-order", i)
       imgSrc.attr("onClick", "gifClick()")
+
       let rating = response.data[i].rating
       imgSrc.css({ "height": "200px", "width": "200px", "margin": "2px" })
       $("#append-gifs").append(holderDiv)
@@ -123,20 +137,86 @@ function buttonFunction(event) {
 // function that will be used to take either play or pause gif depending on data-count attribute value (either zero or one)
 
 function gifClick(event) {
-  console.log(this.event.target.dataset.count);
+  // console.log(this.event.target.dataset.order);
+  let targetGif = this.event.target
+  let thisURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + targetGif.className + "&limit=10&offset=0&rating=G&lang=en";
 
 
-  let currentURl = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.id + "&limit=10&offset=0&rating=G&lang=en";
+  console.log(targetGif.className)
+
+  
+
+  if (targetGif.dataset.count == 0) {
+    console.log("looping correctly");
+
+    $.ajax({
+      url: thisURL,
+      method: "GET"
+
+    }).then(function (response) {
+      targetGif.removeAttribute("data-count")
+      targetGif.setAttribute("data-count", '1')
+      targetGif.removeAttribute("src")
+      targetGif.setAttribute("src", response.data[targetGif.dataset.order].images.original.url)
+      // console.log(response.data[targetGif.dataset.order].images.original.url)
+      console.log(targetGif.dataset.count)
+    })
 
 
-  // if (this.event.target.data("count") === 0) {
+
+  }
+
+  else if (targetGif.dataset.count == 1) {
+    $.ajax({
+      url: thisURL,
+      method: "GET"
+
+    }).then(function (response) {
+      targetGif.removeAttribute("data-count")
+      targetGif.setAttribute("data-count", '0')
+      targetGif.removeAttribute("src")
+      targetGif.setAttribute("src", response.data[targetGif.dataset.order].images.fixed_height_still.url)
+      // console.log(response.data[targetGif.dataset.order].images.original.url)
+      console.log(targetGif.dataset.count)
+    })
+  }
+  // else if (targetGif.dataset.count == 0) {
   //   $.ajax({
-  //     url: currentURL,
+  //     url: thisURL,
   //     method: "GET"
 
-  //   }).then(function () {
-  //     this.event.target.setAttribute("data-count", '1')
+  //   }).then(function (response) {
+  //     targetGif.removeAttribute("data-count")
+  //     targetGif.setAttribute("data-count", '0')
+  //     targetGif.removeAttribute("src")
+  //     targetGif.setAttribute("src", response.data[targetGif.dataset.order].images.fixed_height_still.url)
+  //     // console.log(response.data[targetGif.dataset.order].images.original.url)
+  //     console.log(targetGif.dataset.count)
   //   })
-  // }
 }
+
+
+
+
+
+
+
+
+
+
+// $.ajax({
+//   url: thisURL,
+//   method: "GET"
+
+// }).then(function (response) {
+//   targetGif.setAttribute("data-count", '1')
+//   targetGif.removeAttribute("src")
+//   targetGif.setAttribute("src", response.data[targetGif.dataset.order].images.original.url)
+//   // console.log(response.data[targetGif.dataset.order].images.original.url)
+//   console.log(targetGif.dataset.count)
+// })
+  // }
+
+
+
 
