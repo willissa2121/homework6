@@ -2,7 +2,7 @@
 //declaring the URL, the tracker array globally
 
 let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=Lebron&limit=10&offset=0&rating=G&lang=en"
-let trackArray = []
+let trackArray = ["lebron", "kobe" , "jordan", "westbrook", "harden" , "kawhi"]
 
 // called when submit request button is pressed
 let gifCreator = () => {
@@ -13,7 +13,8 @@ let gifCreator = () => {
 
 
   //Condition to only run new gifNeed is request has not been made yet
-  if (trackArray.indexOf(gifNeed) === -1) {
+  let gifCompare = gifNeed.toLowerCase()
+  if (trackArray.indexOf(gifNeed.toLowerCase()) === -1) {
     trackArray.push(gifNeed)
 
 
@@ -144,7 +145,7 @@ function gifClick(event) {
 
   console.log(targetGif.className)
 
-  
+
 
   if (targetGif.dataset.count == 0) {
     console.log("looping correctly");
@@ -180,42 +181,7 @@ function gifClick(event) {
       console.log(targetGif.dataset.count)
     })
   }
-  // else if (targetGif.dataset.count == 0) {
-  //   $.ajax({
-  //     url: thisURL,
-  //     method: "GET"
-
-  //   }).then(function (response) {
-  //     targetGif.removeAttribute("data-count")
-  //     targetGif.setAttribute("data-count", '0')
-  //     targetGif.removeAttribute("src")
-  //     targetGif.setAttribute("src", response.data[targetGif.dataset.order].images.fixed_height_still.url)
-  //     // console.log(response.data[targetGif.dataset.order].images.original.url)
-  //     console.log(targetGif.dataset.count)
-  //   })
 }
-
-
-
-
-
-
-
-
-
-
-// $.ajax({
-//   url: thisURL,
-//   method: "GET"
-
-// }).then(function (response) {
-//   targetGif.setAttribute("data-count", '1')
-//   targetGif.removeAttribute("src")
-//   targetGif.setAttribute("src", response.data[targetGif.dataset.order].images.original.url)
-//   // console.log(response.data[targetGif.dataset.order].images.original.url)
-//   console.log(targetGif.dataset.count)
-// })
-  // }
 
 
 

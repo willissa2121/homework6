@@ -1,5 +1,5 @@
 button{
-  font-size:17px;
+  font-size:35px;
   font-family:Arial, Helvetica, sans-serif;
   border-radius: 10px;
   border:1px green solid;
@@ -12,6 +12,6 @@ button{
 .image-appender{
   font-weight:700;
   color:green;
-  font-size:15px;
-  margin:15px 2px 5px 2px;
+  font-size:30px;
+  margin:15px 10px 5px 10px;
 }
