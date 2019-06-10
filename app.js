@@ -11,8 +11,9 @@ let gifCreator = () => {
   // sets input value to variable, checks to see if it has already been done
   let gifNeed = $("#gif-request").val()
   let radioVal = $("input[name=radio]:checked").val()
-  console.log($("input[name=radioNum]:checked").val())
+  
   let radioCount = $("input[name=radioNum]:checked").val()
+  // console.log($("input[name=radioNum]:checked").val())
 
 
   //Condition to only run new gifNeed is request has not been made yet
@@ -66,7 +67,7 @@ let gifCreator = () => {
     setTimeout(function () {
       $("#main-button").text("Send Request")
     }, 1500)
-    let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit=10&offset=0&rating=G&lang=en"
+    let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit="+radioCount + "&offset=0&rating=" + radioVal + "&lang=en"
     $.ajax({
       url: currentURL,
       method: "GET"
@@ -99,13 +100,17 @@ console.log($("#gif-request").value)
 //function that is called via onclick of any button (they are all generated dynamically to have the same class name). Process of gif generation is idencitcal to previous process, just skips over the check of input, since no input is given.
 function buttonFunction(event) {
   $("#append-gifs").empty();
+  let gifNeed = $("#gif-request").val()
+  let radioVal = $("input[name=radio]:checked").val()
+  
+  let radioCount = $("input[name=radioNum]:checked").val()
 
 
   // console.log(this.event.target)
   console.log(this.event.target.className)
   let word = this.event.target.className;
 
-  let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.className + "&limit=10&offset=0&rating=G&lang=en"
+  let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.className + "&limit=" + radioCount + "&offset=0&rating=" + radioVal + "&lang=en"
 
 
   $.ajax({
@@ -143,7 +148,12 @@ function buttonFunction(event) {
 function gifClick(event) {
   // console.log(this.event.target.dataset.order);
   let targetGif = this.event.target
-  let thisURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + targetGif.className + "&limit=10&offset=0&rating=G&lang=en";
+  let gifNeed = $("#gif-request").val()
+  let radioVal = $("input[name=radio]:checked").val()
+  let radioCount = $("input[name=radioNum]:checked").val()
+  
+
+  let thisURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + targetGif.className + "&limit=" + radioCount + "&offset=0&rating=" + radioVal + "&lang=en";
 
 
   console.log(targetGif.className)
