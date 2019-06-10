@@ -25,29 +25,18 @@
       <div class="col-md-12 radio-row">
         <p>Gif Rating</p>
 
-        <div class="form-check">
-
-          <input class="form-check-input" value="G" type="radio" name="radio" id="radio1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            G
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-success active">
+            <input type="radio" name="radio" id="option1" value="G" autocomplete="off" checked> G
           </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" value="PG" type="radio" name="radio" id="radio2" value="option2">
-          <label class="form-check-label" for="exampleRadios2">
-            PG
+          <label class="btn btn-outline-success">
+            <input type="radio" name="radio" id="option2" value="PG" autocomplete="off"> PG
           </label>
-        </div>
-        <div class="form-check disabled">
-          <input class="form-check-input" value="PG-13" type="radio" name="radio" id="radio3" value="option3">
-          <label class="form-check-label" for="exampleRadios3">
-            PG13
+          <label class="btn btn-outline-success">
+            <input type="radio" name="radio" id="option3" value="PG-13" autocomplete="off"> PG-13
           </label>
-        </div>
-        <div class="form-check disabled">
-          <input class="form-check-input" value="R" type="radio" name="radio" id="radio4" value="option4">
-          <label class="form-check-label" for="exampleRadios3">
-            R
+          <label class="btn btn-outline-success">
+            <input type="radio" name="radio" id="option3" value="R" autocomplete="off"> R
           </label>
         </div>
       </div>
@@ -57,33 +46,23 @@
       <div class="col-md-12 radio-row">
         <p>Number of Gifs</p>
 
-        <div class="form-check">
-
-          <input class="form-check-input" value="5" type="radio" name="radioNum" id="radioNum1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            5
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-primary active">
+            <input type="radio" name="radioNum" id="optionNum1" value="5" autocomplete="off" checked> 5
           </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" value="10" type="radio" name="radioNum" id="radioNum2" value="option2">
-          <label class="form-check-label" for="exampleRadios2">
-            10
+          <label class="btn btn-outline-primary">
+            <input type="radio" name="radioNum" id="optionNum2" value="10" autocomplete="off"> 10
           </label>
-        </div>
-        <div class="form-check disabled">
-          <input class="form-check-input" value="25" type="radio" name="radioNum" id="radioNum3" value="option3">
-          <label class="form-check-label" for="exampleRadios3">
-            25
+          <label class="btn btn-outline-primary">
+            <input type="radio" name="radioNum" id="optionNum3" value="25" autocomplete="off"> 25
           </label>
-        </div>
-        <div class="form-check disabled">
-          <input class="form-check-input" value="50" type="radio" name="radioNum" id="radioNum4" value="option4">
-          <label class="form-check-label" for="exampleRadios3">
-            50
+          <label class="btn btn-outline-primary">
+            <input type="radio" name="radioNum" id="optionNum4" value="50" autocomplete="off"> 50
           </label>
         </div>
       </div>
     </div>
+
     <div id="submit-row" class="row">
       <div class="col-md-12">
 
@@ -91,7 +70,6 @@
         <button id="main-button" class="btn btn-success" onclick="gifCreator()">Send Request</button>
       </div>
     </div>
-  </div>
   </div>
 
 
