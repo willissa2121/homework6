@@ -1,54 +1,138 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Gif Creator</title>
-  </head>
-  <body>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Gif Creator</title>
+</head>
+
+<body>
+
+  <header>
     <h1 class="text-center">One DirtNasty Gif Generator</h1>
+  </header>
 
-    <div class="form-group text-center">
-        
-        <input class = "input" id="gif-request" type="text">
-        <button id="main-button" class="btn btn-success" onclick = "gifCreator()">Send Request</button>
-    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 radio-row">
+        <p>Gif Rating</p>
 
-    <div class="container">
+        <div class="form-check">
 
-      <div id="button-row" class="row">
-        <!-- <div class="col-md-2"> -->
-          <button onclick = "buttonFunction()" class = "lebron">lebron</button>
-          <button onclick = "buttonFunction()" class = "kobe">kobe</button>
-          <button onclick = "buttonFunction()" class = "jordan">jordan</button>
-          <button onclick = "buttonFunction()" class = "westbrook">westbrook</button>
-          <button onclick = "buttonFunction()" class = "harden">harden</button>
-          <button onclick = "buttonFunction()" class = "kawhi">kawhi</button>
-
+          <input class="form-check-input" value="G" type="radio" name="radio" id="radio1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            G
+          </label>
         </div>
-
-
-      <!-- </div> -->
-      <div  id="append-gifs" class="row">
-        <div class="col-md-12">
-
+        <div class="form-check">
+          <input class="form-check-input" value="PG" type="radio" name="radio" id="radio2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            PG
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" value="PG-13" type="radio" name="radio" id="radio3" value="option3">
+          <label class="form-check-label" for="exampleRadios3">
+            PG13
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" value="R" type="radio" name="radio" id="radio4" value="option4">
+          <label class="form-check-label" for="exampleRadios3">
+            R
+          </label>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 radio-row">
+        <p>Number of Gifs</p>
+
+        <div class="form-check">
+
+          <input class="form-check-input" value="5" type="radio" name="radioNum" id="radioNum1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            5
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" value="10" type="radio" name="radioNum" id="radioNum2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            10
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" value="25" type="radio" name="radioNum" id="radioNum3" value="option3">
+          <label class="form-check-label" for="exampleRadios3">
+            25
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" value="50" type="radio" name="radioNum" id="radioNum4" value="option4">
+          <label class="form-check-label" for="exampleRadios3">
+            50
+          </label>
+        </div>
+      </div>
+    </div>
+    <div id="submit-row" class="row">
+      <div class="col-md-12">
+
+        <input class="input" id="gif-request" type="text">
+        <button id="main-button" class="btn btn-success" onclick="gifCreator()">Send Request</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  </div>
+
+  <div class="container">
+
+    <div id="button-row" class="row">
+      <!-- <div class="col-md-2"> -->
+      <button onclick="buttonFunction()" class="lebron">lebron</button>
+      <button onclick="buttonFunction()" class="kobe">kobe</button>
+      <button onclick="buttonFunction()" class="jordan">jordan</button>
+      <button onclick="buttonFunction()" class="westbrook">westbrook</button>
+      <button onclick="buttonFunction()" class="harden">harden</button>
+      <button onclick="buttonFunction()" class="kawhi">kawhi</button>
 
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src = "app.js"></script>
-  </body>
+
+    <!-- </div> -->
+    <div id="append-gifs" class="row">
+      <div class="col-md-12">
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
 </html>

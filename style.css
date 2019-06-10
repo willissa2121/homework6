@@ -14,4 +14,41 @@ button{
   color:green;
   font-size:30px;
   margin:15px 10px 5px 10px;
+  
+}
+
+button, img{
+  cursor: pointer;
+}
+
+.container{
+  align-items: center;
+  text-align: center;
+  padding-bottom: 2vh;
+  margin-bottom:2vh;
+}
+
+#button-row{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  margin:1px 5px 1px 5px;
+}
+
+#submit-row{
+  margin: 0 auto;
+}
+
+.radio-row{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+}
+p{
+  margin-right:10px;
+  margin-left:10px;
+}
+
+.form-check{
+  margin:0px 5px 0px 5px;
 }

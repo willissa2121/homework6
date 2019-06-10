@@ -10,6 +10,9 @@ let gifCreator = () => {
 
   // sets input value to variable, checks to see if it has already been done
   let gifNeed = $("#gif-request").val()
+  let radioVal = $("input[name=radio]:checked").val()
+  console.log($("input[name=radioNum]:checked").val())
+  let radioCount = $("input[name=radioNum]:checked").val()
 
 
   //Condition to only run new gifNeed is request has not been made yet
@@ -27,7 +30,7 @@ let gifCreator = () => {
     newButton.attr("onClick", "buttonFunction()")
     $("#button-row").append(newButton)
 
-    let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit=10&offset=0&rating=G&lang=en"
+    let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit=" + radioCount + "&offset=0&rating=" + $("input[name=radio]:checked").val() + "&lang=en"
 
     // Ajax query that creates gif and rating and appends it to the container
     $.ajax({
@@ -35,7 +38,7 @@ let gifCreator = () => {
       method: "GET"
     }).then(function (response) {
 
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < radioCount; i++) {
         console.log(response.data[i])
         let holderDiv = $("<div>")
         holderDiv.attr("class", "image-appender")
@@ -110,7 +113,7 @@ function buttonFunction(event) {
     method: "GET"
   }).then(function (response) {
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < radioCount; i++) {
 
       let holderDiv = $("<div>")
       holderDiv.attr("class", "image-appender")
