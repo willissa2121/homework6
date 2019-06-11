@@ -26,8 +26,9 @@ let gifCreator = () => {
 
     let newButton = $("<button>");
     newButton.text(gifNeed)
-    newButton.attr("class", "btn btn-primary ml-2 mt-1 mr-2 mb-1")
-    newButton.attr("class", gifNeed)
+    // newButton.attr("class", "btn btn-primary ml-2 mt-1 mr-2 mb-1")
+    newButton.attr("data-gif", gifNeed)
+    newButton.attr("class", "btn btn-outline-info")
     newButton.attr("onClick", "buttonFunction()")
     $("#button-row").append(newButton)
 
@@ -108,9 +109,9 @@ function buttonFunction(event) {
 
   // console.log(this.event.target)
   console.log(this.event.target.className)
-  let word = this.event.target.className;
+  let word = this.event.target.dataset.gif;
 
-  let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.className + "&limit=" + radioCount + "&offset=0&rating=" + radioVal + "&lang=en"
+  let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + this.event.target.dataset.gif + "&limit=" + radioCount + "&offset=0&rating=" + radioVal + "&lang=en"
 
 
   $.ajax({
