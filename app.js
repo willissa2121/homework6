@@ -149,6 +149,7 @@ function buttonFunction(event) {
 function gifClick(event) {
   // console.log(this.event.target.dataset.order);
   let targetGif = this.event.target
+  console.log(targetGif)
   let gifNeed = $("#gif-request").val()
   let radioVal = $("input[name=radio]:checked").val()
   let radioCount = $("input[name=radioNum]:checked").val()
