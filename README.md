@@ -1,5 +1,5 @@
 # homework6
-##NBA QUIZ
+##Gif Generator
 For this Assignment, the website will desploy static gifs upon either search or button press. The page will then take in 3 parameters, the rating assigned (via button toggle), the quanitity of gifs to be displayed (via button toggle), and the gif keyword itself (via input search). The gifs then display with appropriate margin and padding. The gifs will also change to an animated gif onclick, and will also change back to a still gif onclick. Once a search has been made, if a button does not already exist for the word that is being searched, a new button will be created and appended to the button group. If the button already exists, the search bar submit button will change and let the user know for 3 seconds.
 
 ##Getting Started
