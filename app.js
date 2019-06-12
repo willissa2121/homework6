@@ -67,7 +67,7 @@ let gifCreator = () => {
     $("#main-button").text("This Item Has Already Been Searched!")
     setTimeout(function () {
       $("#main-button").text("Send Request")
-    }, 1500)
+    }, 3000)
     let currentURL = "https://api.giphy.com/v1/gifs/search?api_key=JeHX0I0MEGzdyTS3fWWIeO1xvBS0lmCd&q=" + gifNeed + "&limit="+radioCount + "&offset=0&rating=" + radioVal + "&lang=en"
     $.ajax({
       url: currentURL,
